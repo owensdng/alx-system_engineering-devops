@@ -1,0 +1,2 @@
+#!/bian/bash
+head /etc/passwd

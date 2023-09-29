@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Description: Displays PID of Bash process
+
+ps ax | grep bash | grep -v grep | awk '{print $1, $2}'

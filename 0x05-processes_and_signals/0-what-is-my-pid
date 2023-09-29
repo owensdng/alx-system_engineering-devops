@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Description: Displays process ID of current Bash script
+
+echo "$$"

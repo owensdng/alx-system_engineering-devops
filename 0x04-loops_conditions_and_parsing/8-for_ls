@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# This script lists the content of the current directory in a list format
+# and displays only the part of the name after the first dash.
+
+for file in *; do
+    # Use parameter expansion to extract part of the name after the first dash
+    name="${file#*-}"
+    echo "$name"
+done

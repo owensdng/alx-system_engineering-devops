@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# This script tells a story based on the /etc/passwd file using a while loop and IFS.
+
+while IFS=":" read -r username x userid x home shell; do
+    echo "The user $username is part of the $userid gang, lives in $home, and rides $shell."
+done < /etc/passwd

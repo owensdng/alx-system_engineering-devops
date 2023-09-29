@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Lists the PID of all running bash processes.
+
+ps ax | grep bash | grep -v grep | awk '{print $1, $2}'

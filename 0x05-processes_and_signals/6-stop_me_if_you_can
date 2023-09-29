@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Terminates the process created by script "4-to_infinity_and_beyond".
+
+kill -TERM $(pgrep -f "4-to_infinity_and_beyond")

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Lists the PID of all running bash processes, simplified.
+
+pgrep -x bash

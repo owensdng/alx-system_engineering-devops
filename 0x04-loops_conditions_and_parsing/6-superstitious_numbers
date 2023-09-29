@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# This script displays numbers from 1 to 20
+# and displays special messages for specific iterations
+
+count=0
+while [ $count -lt 20 ]
+do
+count=$((count + 1))
+
+if [ $count -eq 4 ]
+then
+echo $count
+echo "bad luck from China"
+elif [ $count -eq 9 ]
+then
+echo $count
+echo "bad luck from Japan"
+elif [ $count -eq 17 ]
+then
+echo $count
+echo "bad luck from Italy"
+else
+echo $count
+fi
+done

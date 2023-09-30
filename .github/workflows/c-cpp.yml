@@ -7,17 +7,41 @@ on:
     branches: [ "master" ]
 
 jobs:
+
   build:
 
     runs-on: ubuntu-latest
-
+    
     steps:
+
     - uses: actions/checkout@v3
-    - name: configure
+    
+    - name: Install dependencies
+      run: sudo apt-get update && sudo apt-get install -y build-essential
+
+    - name: Configure
       run: ./configure
-    - name: make
+
+    - name: Make
       run: make
-    - name: make check
+
+    - name: Test
       run: make check
-    - name: make distcheck
+
+    - name: Lint
+      run: cppcheck --enable=all --inconclusive --std=c++11 .
+
+    - name: Code coverage
+      run: |
+        cmake -DCMAKE_BUILD_TYPE=Debug .
+        make
+        make test
+        bash <(curl -s https://codecov.io/bash)
+
+    - name: Package
       run: make distcheck
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: Packages
+        path: build/*.tar.gz

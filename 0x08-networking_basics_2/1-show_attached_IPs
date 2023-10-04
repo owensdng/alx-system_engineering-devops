@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Displays all active IPv4 IPs on the machine.
+
+# Use ifconfig to get the list of active IPv4 IPs
+ifconfig | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | grep -v "127.0.0.1"

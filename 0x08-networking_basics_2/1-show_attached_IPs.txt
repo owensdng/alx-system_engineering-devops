@@ -1,4 +1,16 @@
 #!/usr/bin/env bash
-# Displays all acive IPv4 addresses on the machine.
+# Displays all active IPv4 addresses on the machine.
 
-ifconfig | grep -Eo "inet (addr:)?([0-9]*\.){3}[0-9]*" | cut -b 11-
+# Get the network interface names
+interface_names=$(ip -o link show | awk -F': ' '{print $2}')
+
+# Loop through each network interface and extract IPv4 addresses
+for interface in $interface_names; do
+    ipv4_addresses=$(ip -o addr show dev $interface | grep -Eo "inet ([0-9]*\.){3}[0-9]*" | awk '{print $2}')
+    
+    # Check if there are IPv4 addresses for this interface
+    if [ -n "$ipv4_addresses" ]; then
+        echo "IPv4 addresses for interface $interface:"
+        echo "$ipv4_addresses"
+    fi
+done

@@ -2,8 +2,4 @@
 
 # Displays all active IPv4 addresses on the machine.
 
-ip_addresses=$(ifconfig | grep -oP '(?<=inet )(\d+(\.\d+){3})'
-
-for ip in $ip_addresses; do
-  echo $ip
-done
+ip addr show | grep -Eo "inet (addr:)?([0-9]*\.){3}[0-9]*" | cut -b 11-

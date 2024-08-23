@@ -1,13 +1,8 @@
-ncrease the limit hard and soft of the /etc/security/limits.conf
-
-#increase limit
-exec { 'increase-hard-limit-of-holberton-user':
-    command => 'sed -i "/holberton hard/s/5/50000/" /etc/security/limits.conf',
-    path    => '/usr/bin/:/bin/',
-}
-
-#increase soft limit
-exec { 'increase-soft-limit-of-holberton-user':
-    command => 'sed -i "/holberton soft/s/4/50000/" /etc/security/limits.conf',
-    path    => '/usr/bin/:/bin/',
+# Changes holberton user limitations
+exec { 'change-os-configuration-for-holberton-user':
+  command => "bash -c \"sed -iE 's/^holberton hard nofile \
+5/holberton hard nofile 88888/' /etc/security/limits.conf; \
+sed -iE 's/^holberton soft nofile \
+4/holberton soft nofile 88888/' /etc/security/limits.conf\"",
+  path    => '/usr/bin:/usr/sbin:/bin'
 }
